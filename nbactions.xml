@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+        <action>
+            <actionName>CUSTOM-enhance</actionName>
+            <displayName>enhance</displayName>
+            <goals>
+                <goal>datanucleus:enhance</goal>
+            </goals>
+        </action>
+        <action>
+            <actionName>CUSTOM-schema-create</actionName>
+            <displayName>schema-create</displayName>
+            <goals>
+                <goal>datanucleus:schema-create</goal>
+            </goals>
+        </action>
+    </actions>
