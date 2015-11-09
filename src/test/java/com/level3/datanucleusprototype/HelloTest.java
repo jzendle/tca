@@ -69,7 +69,7 @@ public class HelloTest {
       met.setThreshold("50");
 
       tca.setMetric(met);
-      tca.setResource1(res);
+      tca.setResource(res);
 
       //em.persist(met);
       em.persist(tca);
@@ -97,8 +97,8 @@ public class HelloTest {
       // add resource
       Resource res = new Resource("1", UUID.randomUUID().toString());
       res.setCircuit("54/HCGS/123456/DEMO");
-      tca.setResource(res.getGuid());
-      tca.setResource1(res);
+      tca.setResourceGuid(res.getGuid());
+      tca.setResource(res);
       
       em.persist(tca);
       

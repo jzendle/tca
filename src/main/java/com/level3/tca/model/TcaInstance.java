@@ -27,8 +27,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
    @NamedQuery(name = "TcaInstance.findAll", query = "SELECT t FROM TcaInstance t"),
    @NamedQuery(name = "TcaInstance.findByGuid", query = "SELECT t FROM TcaInstance t WHERE t.guid = :guid"),
-   @NamedQuery(name = "TcaInstance.findByResource", query = "SELECT t FROM TcaInstance t WHERE t.resource = :resource"),
-   @NamedQuery(name = "TcaInstance.findByMetric1", query = "SELECT t FROM TcaInstance t WHERE t.metric1 = :metric1"),
+   @NamedQuery(name = "TcaInstance.findByResourceGuid", query = "SELECT t FROM TcaInstance t WHERE t.resource = :resourceGuid"),
+   @NamedQuery(name = "TcaInstance.findByMetricGuid", query = "SELECT t FROM TcaInstance t WHERE t.metric = :metricGuid"),
    @NamedQuery(name = "TcaInstance.findByOwner", query = "SELECT t FROM TcaInstance t WHERE t.owner = :owner"),
    @NamedQuery(name = "TcaInstance.findByQos", query = "SELECT t FROM TcaInstance t WHERE t.qos = :qos")})
 public class TcaInstance extends IdentityByGuid implements Serializable {
@@ -36,10 +36,10 @@ public class TcaInstance extends IdentityByGuid implements Serializable {
    
    @Basic(optional = false)
    @Column(name = "RESOURCE")
-   private String resource;
+   private String resourceGuid;
    @Basic(optional = false)
    @Column(name = "METRIC")
-   private String metric1;
+   private String metricGuid;
    @Basic(optional = false)
    @Column(name = "OWNER")
    private String owner;
@@ -49,7 +49,7 @@ public class TcaInstance extends IdentityByGuid implements Serializable {
    @OneToOne(cascade = CascadeType.ALL, mappedBy = "tcaInstance")
    private Metric metric;
    @OneToOne(cascade = CascadeType.ALL, mappedBy = "tcaInstance")
-   private Resource resource1;
+   private Resource resource;
 
    public TcaInstance() {
       super();
@@ -59,29 +59,29 @@ public class TcaInstance extends IdentityByGuid implements Serializable {
       super(guid);
    }
 
-   public TcaInstance(String guid, String resource, String metric1, String owner, int qos) {
+   public TcaInstance(String guid, String resourceGuid, String metricGuid, String owner, int qos) {
      super(guid);
-      this.resource = resource;
-      this.metric1 = metric1;
+      this.resourceGuid = resourceGuid;
+      this.metricGuid = metricGuid;
       this.owner = owner;
       this.qos = qos;
    }
 
 
-   public String getResource() {
-      return resource;
+   public String getResourceGuid() {
+      return resourceGuid;
    }
 
-   public void setResource(String resource) {
-      this.resource = resource;
+   public void setResourceGuid(String resource) {
+      this.resourceGuid = resource;
    }
 
-   public String getMetric1() {
-      return metric1;
+   public String getMetricGuid() {
+      return metricGuid;
    }
 
-   public void setMetric1(String metric1) {
-      this.metric1 = metric1;
+   public void setMetricGuid(String metric) {
+      this.metricGuid = metric;
    }
 
    public String getOwner() {
@@ -105,17 +105,17 @@ public class TcaInstance extends IdentityByGuid implements Serializable {
    }
 
    public void setMetric(Metric metric) {
-      this.metric1 = metric.getGuid();
+      this.metricGuid = metric.getGuid();
       this.metric = metric;
    }
 
-   public Resource getResource1() {
-      return resource1;
+   public Resource getResource() {
+      return resource;
    }
 
-   public void setResource1(Resource resource1) {
-      this.resource = resource1.getGuid();
-      this.resource1 = resource1;
+   public void setResource(Resource resource) {
+      this.resourceGuid = resource.getGuid();
+      this.resource = resource;
    }
 
    @Override
