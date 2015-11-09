@@ -2,22 +2,21 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="MyUnit" transaction-type="RESOURCE_LOCAL">
     <!--provider>org.eclipse.persistence.jpa.PersistenceProvider</provider-->
-    
-    <class>com.level3.datanucleusprototype.IdentityByUUID</class>
-    <class>com.level3.datanucleusprototype.Alert</class>
-    <class>com.level3.datanucleusprototype.Resource</class>
-    <class>com.level3.datanucleusprototype.Action</class>
-    <class>com.level3.datanucleusprototype.AlertActionParameter</class>
-    <class>com.level3.datanucleusprototype.Metric</class>
-    <class>com.level3.datanucleusprototype.TcaInstance</class>
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>com.level3.tca.model.Action</class>
+    <class>com.level3.tca.model.AlertActionParameter</class>
+    <class>com.level3.tca.model.Metric</class>
+    <class>com.level3.tca.model.Alert</class>
+    <class>com.level3.tca.model.TcaInstance</class>
+    <class>com.level3.tca.model.Resource</class>
     <properties>
+      <property name="datanucleus.schema.autoCreateAll" value="false"/>
+      <property name="datanucleus.schema.validateTables" value="false"/>
+      <property name="datanucleus.schema.validateConstraints" value="false"/>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/mydb?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="jzendle"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.password" value="jzendle"/>
-      <property name="datanucleus.schema.autoCreateAll" value="false"/>
-      <property name="datanucleus.schema.validateTables" value="true"/>
-      <property name="datanucleus.schema.validateConstraints" value="true"/>
     </properties>
   </persistence-unit>
 </persistence>
